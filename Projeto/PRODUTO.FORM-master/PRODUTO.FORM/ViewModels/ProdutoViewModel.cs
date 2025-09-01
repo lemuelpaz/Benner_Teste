@@ -122,6 +122,24 @@ namespace PRODUTO.FORM.ViewModels
         {
             if (ProdutoSelecionado == null) return;
 
+            // --- Validação obrigatória
+            if (string.IsNullOrWhiteSpace(ProdutoSelecionado.Nome))
+            {
+                MessageBox.Show("O campo Nome é obrigatório.", "Atenção", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(ProdutoSelecionado.Codigo))
+            {
+                MessageBox.Show("O campo Código é obrigatório.", "Atenção", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            if (ProdutoSelecionado.Preco <= 0)
+            {
+                MessageBox.Show("O campo Valor é obrigatório e deve ser maior que zero.", "Atenção", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
             bool sucesso = ProdutoService.EditarProduto(ProdutoSelecionado);
 
             if (sucesso)
@@ -139,13 +157,34 @@ namespace PRODUTO.FORM.ViewModels
         {
             if (ProdutoSelecionado == null) return;
 
+            if (string.IsNullOrWhiteSpace(ProdutoSelecionado.Nome))
+            {
+                MessageBox.Show("O campo Nome é obrigatório.", "Atenção", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(ProdutoSelecionado.Codigo))
+            {
+                MessageBox.Show("O campo Código é obrigatório.", "Atenção", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            if (ProdutoSelecionado.Preco <= 0)
+            {
+                MessageBox.Show("O campo Valor é obrigatório e deve ser maior que zero.", "Atenção", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            // --- Persistência
             var listaProdutos = ProdutoService.CarregarProdutos();
             ProdutoSelecionado.Id = listaProdutos.Any() ? listaProdutos.Max(p => p.Id) + 1 : 1;
             listaProdutos.Add(ProdutoSelecionado);
             ProdutoService.SalvarProdutos(listaProdutos);
 
             MessageBox.Show("Produto salvo com sucesso!", "Sucesso", MessageBoxButton.OK, MessageBoxImage.Information);
+
             VoltarParaLista();
         }
+
     }
 }

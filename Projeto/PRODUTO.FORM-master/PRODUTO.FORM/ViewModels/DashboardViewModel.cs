@@ -10,7 +10,7 @@ namespace PRODUTO.FORM.ViewModels
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        // Pessoas
+        
         private string _qtdPessoas;
         public string QtdPessoas
         {
@@ -18,7 +18,7 @@ namespace PRODUTO.FORM.ViewModels
             set { _qtdPessoas = value; OnPropertyChanged(nameof(QtdPessoas)); }
         }
 
-        // Produtos
+        
         private string _qtdProdutos;
         public string QtdProdutos
         {
@@ -26,7 +26,7 @@ namespace PRODUTO.FORM.ViewModels
             set { _qtdProdutos = value; OnPropertyChanged(nameof(QtdProdutos)); }
         }
 
-        // Pedidos
+        
         private string _qtdPedidos;
         public string QtdPedidos
         {

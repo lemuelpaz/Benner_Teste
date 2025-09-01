@@ -99,7 +99,6 @@ namespace PRODUTO.FORM.ViewModels
         {
             if (NovaPessoa == null) return;
 
-            // Validação obrigatória
             if (string.IsNullOrWhiteSpace(NovaPessoa.Nome))
             {
                 MessageBox.Show("O campo Nome é obrigatório.", "Atenção", MessageBoxButton.OK, MessageBoxImage.Warning);
@@ -173,12 +172,10 @@ namespace PRODUTO.FORM.ViewModels
         }
         public Pessoa PessoaEditando { get; set; } = new Pessoa();
 
-        // Método para abrir a tela de edição
         public void AbrirEdicao(Pessoa pessoaSelecionada)
         {
             if (pessoaSelecionada == null) return;
 
-            // Preenche PessoaEditando com os dados da pessoa selecionada
             PessoaEditando = new Pessoa
             {
                 Id = pessoaSelecionada.Id,
@@ -188,11 +185,10 @@ namespace PRODUTO.FORM.ViewModels
             };
             OnPropertyChanged(nameof(PessoaEditando));
 
-            // Navega para a tela de edição
             if (Application.Current.MainWindow is MainWindow mainWindow)
             {
                 var editarUC = new EditarPessoasUserControl();
-                editarUC.DataContext = this; // MUITO IMPORTANTE: DataContext aponta para o ViewModel atual
+                editarUC.DataContext = this; 
                 mainWindow.MainContent.Content = editarUC;
             }
         }
