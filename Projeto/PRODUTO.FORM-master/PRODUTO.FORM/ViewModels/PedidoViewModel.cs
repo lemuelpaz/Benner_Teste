@@ -154,10 +154,30 @@ namespace PRODUTO.FORM.ViewModels
 
         private void SalvarPedido(Pedido pedido)
         {
+            if (pedido.Pessoa == null)
+            {
+                MessageBox.Show("O campo Pessoa é obrigatório.", "Atenção", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            if (pedido.Produtos == null || !pedido.Produtos.Any())
+            {
+                MessageBox.Show("O pedido deve conter pelo menos um produto.", "Atenção", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(pedido.FormaPagamento))
+            {
+                MessageBox.Show("O campo Forma de Pagamento é obrigatório.", "Atenção", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
             var pedidosExistentes = CarregarPedidos();
             pedidosExistentes.Add(pedido);
             var json = JsonSerializer.Serialize(pedidosExistentes, new JsonSerializerOptions { WriteIndented = true });
             File.WriteAllText(ArquivoPedidos, json);
+
+            MessageBox.Show("Pedido salvo com sucesso!", "Sucesso", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         protected void OnPropertyChanged(string propertyName)
