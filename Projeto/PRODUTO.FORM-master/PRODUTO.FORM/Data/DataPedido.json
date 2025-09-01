@@ -1,3 +1,23 @@
-{
-
-}
+[
+  {
+    "ID": 1,
+    "DataDaVenda": "2025-09-01T14:30:00",
+    "ValorTotal": 250.75,
+    "FormaDePagamento": "Cartão de Crédito",
+    "Status": "Concluído"
+  },
+  {
+    "ID": 2,
+    "DataDaVenda": "2025-09-02T10:15:00",
+    "ValorTotal": 150.00,
+    "FormaDePagamento": "Dinheiro",
+    "Status": "Pendente"
+  },
+  {
+    "ID": 3,
+    "DataDaVenda": "2025-09-03T09:45:00",
+    "ValorTotal": 320.50,
+    "FormaDePagamento": "Dinheiro",
+    "Status": "Concluído"
+  }
+]
