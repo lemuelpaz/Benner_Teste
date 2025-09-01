@@ -1,0 +1,99 @@
+﻿<UserControl x:Class="PRODUTO.FORM.View.Pessoas.EditarPessoasUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             d:DesignHeight="600" d:DesignWidth="900">
+
+    <UserControl.Resources>
+        <!-- Botão principal -->
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="#ec1444"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Padding" Value="10,4"/>
+            <Setter Property="Margin" Value="0,0,8,0"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+                                CornerRadius="4" 
+                                Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#f02470"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- Botão secundário -->
+        <Style x:Key="SecondaryButton" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+            <Setter Property="Background" Value="#e0e0e0"/>
+            <Setter Property="Foreground" Value="#333"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#bdbdbd"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+
+    <Grid Background="#f9f9f9" Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Título -->
+        <TextBlock Text="Editar Pessoa"
+                   FontSize="24"
+                   FontWeight="Bold"
+                   Foreground="#2E3A59"
+                   HorizontalAlignment="Center"
+                   Margin="0 0 0 15"/>
+
+        <!-- Formulário -->
+        <Border Grid.Row="1" Background="White" CornerRadius="6" Padding="20" BorderBrush="#ddd" BorderThickness="1" Margin="200,0,200,0">
+            <StackPanel>
+
+                <!-- Nome -->
+                <StackPanel Margin="0 10">
+                    <TextBlock Text="Nome:" FontSize="14" FontWeight="SemiBold" Foreground="#444"/>
+                    <TextBox Height="30" Margin="0 5 0 0" Text="{Binding PessoaEditando.Nome, Mode=TwoWay}"/>
+                </StackPanel>
+
+                <!-- CPF -->
+                <StackPanel Margin="0 10">
+                    <TextBlock Text="CPF:" FontSize="14" FontWeight="SemiBold" Foreground="#444"/>
+                    <TextBox Height="30" Margin="0 5 0 0" Text="{Binding PessoaEditando.CPF, Mode=TwoWay}"/>
+                </StackPanel>
+
+                <!-- Endereço -->
+                <StackPanel Margin="0 10">
+                    <TextBlock Text="Endereço (opcional):" FontSize="14" FontWeight="SemiBold" Foreground="#444"/>
+                    <TextBox Height="30" Margin="0 5 0 0" Text="{Binding PessoaEditando.Endereco, Mode=TwoWay}"/>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+
+        <!-- Botões -->
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 20">
+            <Button Content="Salvar" Width="120"
+                    Command="{Binding PessoaCommand}"
+                    CommandParameter="SalvarEdicao"/>
+            <Button Content="Voltar" Width="120" Style="{StaticResource SecondaryButton}"
+                    Command="{Binding PessoaCommand}"
+                    CommandParameter="Voltar"/>
+        </StackPanel>
+
+    </Grid>
+</UserControl>

@@ -1,0 +1,16 @@
+[
+  {
+    "Id": 1,
+    "Nome": "João Silva",
+    "CPF": "123.456.789-00",
+    "Endereco": "Rua A, 123",
+    "Pedidos": []
+  },
+  {
+    "Id": 2,
+    "Nome": "Maria Souza",
+    "CPF": "987.654.321-00",
+    "Endereco": "Av. B, 456",
+    "Pedidos": []
+  }
+]
