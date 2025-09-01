@@ -17,7 +17,6 @@ namespace PRODUTO.FORM.ViewModels.Commands
 
         public bool CanExecute(object parameter)
         {
-            // Sempre pode executar, mas você pode adicionar validações se quiser
             return true;
         }
 

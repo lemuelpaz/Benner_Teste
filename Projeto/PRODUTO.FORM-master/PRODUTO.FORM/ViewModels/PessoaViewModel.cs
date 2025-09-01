@@ -17,7 +17,6 @@ namespace PRODUTO.FORM.ViewModels
         public ObservableCollection<Pessoa> Pessoas { get; set; }
         public Pessoa PessoaSelecionada { get; set; }
 
-        // Propriedade para cadastro de nova pessoa
         public Pessoa NovaPessoa { get; set; } = new Pessoa();
 
         public string FiltroNome { get; set; }
@@ -100,6 +99,18 @@ namespace PRODUTO.FORM.ViewModels
         {
             if (NovaPessoa == null) return;
 
+            // Validação obrigatória
+            if (string.IsNullOrWhiteSpace(NovaPessoa.Nome))
+            {
+                MessageBox.Show("O campo Nome é obrigatório.", "Atenção", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(NovaPessoa.CPF))
+            {
+                MessageBox.Show("O campo CPF é obrigatório.", "Atenção", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
             var lista = Pessoas.ToList();
             lista.Add(NovaPessoa);
             Pessoas = new ObservableCollection<Pessoa>(lista);
@@ -107,12 +118,10 @@ namespace PRODUTO.FORM.ViewModels
 
             MessageBox.Show("Pessoa cadastrada com sucesso!", "Sucesso", MessageBoxButton.OK, MessageBoxImage.Information);
 
-            // Limpa a NovaPessoa para o próximo cadastro
             NovaPessoa = new Pessoa();
             OnPropertyChanged(nameof(Pessoas));
             OnPropertyChanged(nameof(NovaPessoa));
 
-            // Volta para a tela de listagem
             Voltar();
         }
 
@@ -194,6 +203,18 @@ namespace PRODUTO.FORM.ViewModels
         {
             if (PessoaEditando == null) return;
 
+            if (string.IsNullOrWhiteSpace(PessoaEditando.Nome))
+            {
+                MessageBox.Show("O campo Nome é obrigatório.", "Atenção", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(PessoaEditando.CPF))
+            {
+                MessageBox.Show("O campo CPF é obrigatório.", "Atenção", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
             var pessoa = Pessoas.FirstOrDefault(p => p.Id == PessoaEditando.Id);
             if (pessoa != null)
             {
@@ -205,10 +226,10 @@ namespace PRODUTO.FORM.ViewModels
                 OnPropertyChanged(nameof(Pessoas));
                 MessageBox.Show("Pessoa atualizada com sucesso!", "Sucesso", MessageBoxButton.OK, MessageBoxImage.Information);
 
-                // Volta para a lista de pessoas
                 Voltar();
             }
         }
+
 
         protected void OnPropertyChanged(string propertyName)
         {

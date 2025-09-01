@@ -58,12 +58,7 @@ namespace PRODUTO.FORM.ViewModels.Commands
                         _viewModel.AbrirEdicao(_viewModel.PessoaSelecionada);
                         break;
                 }
-            }
-            // Caso o parâmetro seja uma Pessoa direta (para inclusão)
-            //else if (parameter is Pessoa pessoa)
-            //{
-            //    _viewModel.IncluirPessoa(pessoa);
-            //}
+            }            
         }
     }
 }
