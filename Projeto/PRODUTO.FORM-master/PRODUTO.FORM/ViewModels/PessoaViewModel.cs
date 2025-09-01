@@ -3,6 +3,7 @@ using PRODUTO.FORM.Service;
 using PRODUTO.FORM.Services;
 using PRODUTO.FORM.View.Pessoas;
 using PRODUTO.FORM.ViewModels.Commands;
+using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
@@ -44,6 +45,40 @@ namespace PRODUTO.FORM.ViewModels
             Pessoas = new ObservableCollection<Pessoa>(PessoaService.CarregarPessoas());
             CarregarPedidos();
             OnPropertyChanged(nameof(Pessoas));
+        }
+
+        private string _cpf;
+        public string Cpf
+        {
+            get => NovaPessoa.CPF;
+            set
+            {
+                // Guarda os dígitos apenas
+                string digits = new string(value?.Where(char.IsDigit).ToArray() ?? Array.Empty<char>());
+                NovaPessoa.CPF = AplicarMascaraCpf(digits); // Aplica a máscara para exibir
+                OnPropertyChanged(nameof(Cpf));
+            }
+        }
+
+        public bool CpfEstaPreenchido => !string.IsNullOrWhiteSpace(new string(NovaPessoa.CPF.Where(char.IsDigit).ToArray()));
+
+        private string AplicarMascaraCpf(string valor)
+        {
+            if (string.IsNullOrWhiteSpace(valor))
+                return string.Empty;
+
+            string digits = new string(valor.Where(char.IsDigit).ToArray());
+
+            if (digits.Length <= 3)
+                return digits;
+            else if (digits.Length <= 6)
+                return $"{digits.Substring(0, 3)}.{digits.Substring(3)}";
+            else if (digits.Length <= 9)
+                return $"{digits.Substring(0, 3)}.{digits.Substring(3, 3)}.{digits.Substring(6)}";
+            else if (digits.Length <= 11)
+                return $"{digits.Substring(0, 3)}.{digits.Substring(3, 3)}.{digits.Substring(6, 3)}-{digits.Substring(9)}";
+            else
+                return $"{digits.Substring(0, 3)}.{digits.Substring(3, 3)}.{digits.Substring(6, 3)}-{digits.Substring(9, 2)}";
         }
 
         public void AplicarFiltros()
@@ -106,6 +141,12 @@ namespace PRODUTO.FORM.ViewModels
             }
 
             if (string.IsNullOrWhiteSpace(NovaPessoa.CPF))
+            {
+                MessageBox.Show("O campo CPF é obrigatório.", "Atenção", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            if (!CpfEstaPreenchido)
             {
                 MessageBox.Show("O campo CPF é obrigatório.", "Atenção", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
