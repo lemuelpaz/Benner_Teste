@@ -111,7 +111,9 @@
                         <DataGridCheckBoxColumn Header="Selecionar" Binding="{Binding IsSelected}" Width="80"/>
                         <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="50"/>
                         <DataGridTextColumn Header="Data da Venda" Binding="{Binding DataVenda, StringFormat=dd/MM/yyyy}" Width="150"/>
-                        <DataGridTextColumn Header="Valor Total" Binding="{Binding PrecoTotal, StringFormat=C}" Width="120"/>
+                        <DataGridTextColumn Header="Valor Total" 
+                    Binding="{Binding PrecoTotal, StringFormat={}{0:C2}, ConverterCulture=pt-BR}" 
+                    Width="120"/>
                         <DataGridTextColumn Header="Forma de Pagamento" Binding="{Binding FormaPagamento}" Width="150"/>
                         <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="120"/>
                         <DataGridTemplateColumn Header="Ações" Width="250">
