@@ -20,6 +20,7 @@ namespace PRODUTO.FORM.ViewModels.Commands
             return true;
         }
 
+
         public void Execute(object parameter)
         {
             if (parameter is string action)
@@ -58,7 +59,10 @@ namespace PRODUTO.FORM.ViewModels.Commands
                         _viewModel.AbrirEdicao(_viewModel.PessoaSelecionada);
                         break;
                 }
-            }            
+            }  
+            
+
         }
+        
     }
 }

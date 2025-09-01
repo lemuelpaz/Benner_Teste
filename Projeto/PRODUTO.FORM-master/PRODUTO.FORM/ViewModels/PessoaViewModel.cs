@@ -4,10 +4,12 @@ using PRODUTO.FORM.Services;
 using PRODUTO.FORM.View.Pessoas;
 using PRODUTO.FORM.ViewModels.Commands;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows;
+using System.Windows.Input;
 
 namespace PRODUTO.FORM.ViewModels
 {
@@ -30,15 +32,7 @@ namespace PRODUTO.FORM.ViewModels
             Pessoas = new ObservableCollection<Pessoa>(PessoaService.CarregarPessoas());
             CarregarPedidos();
             PessoaCommand = new PessoaCommand(this);
-        }
-
-        private void CarregarPedidos()
-        {
-            foreach (var pessoa in Pessoas)
-            {
-                pessoa.Pedidos = PedidoService.ObterPedidosPorPessoa(pessoa.Id);
-            }
-        }
+        }        
 
         public void CarregarPessoas()
         {
@@ -234,8 +228,20 @@ namespace PRODUTO.FORM.ViewModels
             }
         }
 
+        public ObservableCollection<Pedido> TodosPedidos { get; set; } = new ObservableCollection<Pedido>();
 
-        // Método para salvar edição
+        public void CarregarPedidos()
+        {
+            TodosPedidos.Clear();
+
+            var pedidos = PedidoService.ObterTodosPedidos();
+
+            foreach (var pedido in pedidos)
+            {
+                TodosPedidos.Add(pedido);
+            }
+        }
+
         public void SalvarEdicao()
         {
             if (PessoaEditando == null) return;

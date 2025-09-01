@@ -13,7 +13,7 @@ namespace PRODUTO.FORM.Services
         private static readonly string CaminhoJson = Path.Combine(
             AppDomain.CurrentDomain.BaseDirectory,
             "Data",
-            "Pedidos.json"
+            "DataPedido.json"
         );
 
         public static List<Pedido> ObterTodosPedidos()

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using PRODUTO.FORM.Services;
+using System.Collections.Generic;
 
 namespace PRODUTO.FORM.Models
 {
@@ -9,5 +10,6 @@ namespace PRODUTO.FORM.Models
         public string CPF { get; set; }
         public string Endereco { get; set; }
         public List<Pedido> Pedidos { get; set; } = new List<Pedido>();
+      
     }
 }

@@ -1,23 +1,84 @@
 [
   {
-    "ID": 1,
-    "DataDaVenda": "2025-09-01T14:30:00",
-    "ValorTotal": 250.75,
-    "FormaDePagamento": "Cartão de Crédito",
+    "Id": 1,
+    "Pessoa": {
+      "Id": 1,
+      "Nome": "Fulano",
+      "CPF": "123.456.789-00",
+      "Endereco": "Rua A, 123"
+    },
+    "Produtos": [
+      {
+        "Produto": {
+          "Id": 1,
+          "Nome": "Produto A",
+          "Preco": 100.00
+        },
+        "Quantidade": 2
+      },
+      {
+        "Produto": {
+          "Id": 2,
+          "Nome": "Produto B",
+          "Preco": 50.75
+        },
+        "Quantidade": 1
+      }
+    ],
+    "DataVenda": "2025-09-01T14:30:00",
+    "FormaPagamento": "Cartão de Crédito",
     "Status": "Concluído"
   },
   {
-    "ID": 2,
-    "DataDaVenda": "2025-09-02T10:15:00",
-    "ValorTotal": 150.00,
-    "FormaDePagamento": "Dinheiro",
+    "Id": 2,
+    "Pessoa": {
+      "Id": 2,
+      "Nome": "Beltrano",
+      "CPF": "987.654.321-00",
+      "Endereco": "Rua B, 456"
+    },
+    "Produtos": [
+      {
+        "Produto": {
+          "Id": 3,
+          "Nome": "Produto C",
+          "Preco": 50.00
+        },
+        "Quantidade": 3
+      }
+    ],
+    "DataVenda": "2025-09-02T10:15:00",
+    "FormaPagamento": "Dinheiro",
     "Status": "Pendente"
   },
   {
-    "ID": 3,
-    "DataDaVenda": "2025-09-03T09:45:00",
-    "ValorTotal": 320.50,
-    "FormaDePagamento": "Dinheiro",
+    "Id": 3,
+    "Pessoa": {
+      "Id": 3,
+      "Nome": "Ciclano",
+      "CPF": "111.222.333-44",
+      "Endereco": "Rua C, 789"
+    },
+    "Produtos": [
+      {
+        "Produto": {
+          "Id": 4,
+          "Nome": "Produto D",
+          "Preco": 120.00
+        },
+        "Quantidade": 2
+      },
+      {
+        "Produto": {
+          "Id": 5,
+          "Nome": "Produto E",
+          "Preco": 80.50
+        },
+        "Quantidade": 1
+      }
+    ],
+    "DataVenda": "2025-09-03T09:45:00",
+    "FormaPagamento": "Dinheiro",
     "Status": "Concluído"
   }
 ]
